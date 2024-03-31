@@ -9,6 +9,10 @@
 - babel converts JSX => React.createElements => JS Objects => HTMLElement
 - Component composition => calling another function inside react component
 
+**Config driven UI**
+
+- UI is driven by congig.
+
 # React Components
 
 **Class Components** OLD
