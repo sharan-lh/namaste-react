@@ -17,7 +17,7 @@
 
 **Class Components** OLD
 
-- **Function Components** NEW
+**Function Components** NEW
 
 - Normal Javascript fuction
 
@@ -37,6 +37,14 @@
 - Error Handling
 - Https
 - Tree Shacking (remove unused code)
+
+# Hooks
+
+- Normal JS utility functions
+- useState() Superpowerfull state variables
+- useEffect()
+
+# Reconcilation Algorithm (React fiber)
 
 # Commands
 

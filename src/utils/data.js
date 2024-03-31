@@ -1,4 +1,4 @@
-[
+const data = [
   {
       "card": {
         "card": {
@@ -1669,3 +1669,5 @@
       }
     }
   ]
+
+  export default data;
