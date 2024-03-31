@@ -4,6 +4,18 @@
 - ~ in package json means it upgrades major version too
 - ^ upgrades minor versions
 - node_modules is collection of dependencies required/installed in project
+- configure the suppoerted browser using browserList in package.json
+
+- babel converts JSX => React.createElements => JS Objects => HTMLElement
+- Component composition => calling another function inside react component
+
+# React Components
+
+**Class Components** OLD
+
+- **Function Components** NEW
+
+- Normal Javascript fuction
 
 # Parcel
 
