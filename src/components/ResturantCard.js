@@ -7,8 +7,8 @@ const ResturantCard = ({restObj}) => {
             <img className='res-logo' src={CDN_URL +cloudinaryImageId }></img>
             <h3>{name}</h3>
             <h4>{cuisines.join(", ")}</h4>
-            <h4>{avgRatingString}</h4>
-            <h4>{sla.deliveryTime}</h4>
+            <h4>Rating : {avgRatingString}</h4>
+            <h4>Distance :{sla.deliveryTime}</h4>
         </div>
     );
 }
