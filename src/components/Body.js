@@ -2,6 +2,7 @@ import ResturantCard from "./ResturantCard";
 import { useState , useEffect} from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body =() => {
     // normal JS variable
@@ -23,6 +24,10 @@ const Body =() => {
         setFilteredResturants(json?.data?.cards?.slice(3));
     };
 
+    const onlineStatus = useOnlineStatus();
+
+    if(onlineStatus === false) return <h1> You are offline</h1>;
+    
     return listOfResturants.length === 0 ? (<Shimmer/>) : (
         <div className='body'>
             <div className='filter'>
