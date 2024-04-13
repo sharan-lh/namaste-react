@@ -27,21 +27,23 @@ const Body =() => {
     const onlineStatus = useOnlineStatus();
 
     if(onlineStatus === false) return <h1> You are offline</h1>;
-    
+
     return listOfResturants.length === 0 ? (<Shimmer/>) : (
         <div className='body'>
-            <div className='filter'>
-                <div className="search">
-                    <input type="text" className="search-box" value={searchText} onChange={e => setSearchText(e.target.value)}/>
-                    <button onClick={() => {
+            <div className='filter flex'>
+                <div className="search m-4 p-4">
+                    <input  className=" border border-black border-solid search-box" type="text" value={searchText} onChange={e => setSearchText(e.target.value)}/>
+                    <button className="px-4 py-2 bg-green-100 m-4 rounded-lg" onClick={() => {
                         setFilteredResturants(listOfResturants.filter(e => e.card.card.info.name.toLowerCase().includes(searchText.toLowerCase())))
                     }}> Search </button>
                 </div>
-                <button className="filter-btn" onClick={() => {
+                <div className="search m-4 p-4">
+                <button className="px-4  py-2 bg-green-100 m-4 rounded-lg" onClick={() => {
                     setFilteredResturants(listOfResturants.filter(res => res.card.card.info.avgRatingString >= 4.5 ));
                 } }>Top Rated Restaurants</button>
+                </div>
             </div>
-            <div className='restro-container'>
+            <div className='flex flex-wrap'>
                {
                 filteredResturants.map(resturant => <Link key={resturant.card.card.info.id} to={"resturants/" + resturant.card.card.info.id} ><ResturantCard  restObj={resturant}/> </Link>)
                }
