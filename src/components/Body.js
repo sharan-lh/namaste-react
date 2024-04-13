@@ -1,9 +1,9 @@
-import ResturantCard from "./ResturantCard";
-import { useState , useEffect} from "react";
+import ResturantCard , {withPromotedLabel} from "./ResturantCard";
+import { useState , useEffect , useContext} from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
-
+import UserContext from "../utils/UserContext";
 const Body =() => {
     // normal JS variable
     //let listOfResturants = data;
@@ -12,6 +12,8 @@ const Body =() => {
     const [listOfResturants, setListOfResturants] = useState([]);
     const [filteredResturants, setFilteredResturants] = useState([]);
     const [searchText, setSearchText] = useState("");
+    const ResturantCardPromoted = withPromotedLabel(ResturantCard);
+
     useEffect(() => {
         fetchData();
     },[]);
@@ -28,6 +30,8 @@ const Body =() => {
 
     if(onlineStatus === false) return <h1> You are offline</h1>;
 
+    const {loggedInUser,setUserName} = useContext(UserContext);
+    
     return listOfResturants.length === 0 ? (<Shimmer/>) : (
         <div className='body'>
             <div className='filter flex'>
@@ -42,10 +46,20 @@ const Body =() => {
                     setFilteredResturants(listOfResturants.filter(res => res.card.card.info.avgRatingString >= 4.5 ));
                 } }>Top Rated Restaurants</button>
                 </div>
+                <div className="search m-4 p-4 flex items-center">
+                <label>User name :  </label>
+                <input className="border border-black p-2" onChange={(e) => setUserName(e.target.value)}
+                value={loggedInUser}/>
+                </div>
             </div>
             <div className='flex flex-wrap'>
                {
-                filteredResturants.map(resturant => <Link key={resturant.card.card.info.id} to={"resturants/" + resturant.card.card.info.id} ><ResturantCard  restObj={resturant}/> </Link>)
+                filteredResturants.map(resturant => 
+                <Link key={resturant.card.card.info.id} to={"resturants/" + resturant.card.card.info.id} >
+                    {
+                    resturant.card.card.info.promoted ? (<ResturantCardPromoted restObj={resturant}/>) : (<ResturantCard  restObj={resturant}/>)
+                    }
+                </Link>)
                }
             </div>
         </div>
